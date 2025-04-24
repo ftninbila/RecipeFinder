@@ -1,0 +1,290 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Generation Time: Apr 23, 2025 at 04:31 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `recipe_finder`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `favorites`
+--
+
+CREATE TABLE `favorites` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `recipe_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `favorites`
+--
+
+INSERT INTO `favorites` (`id`, `user_id`, `recipe_id`, `created_at`) VALUES
+(3, 1, 1, '2025-04-23 13:37:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ingredients`
+--
+
+CREATE TABLE `ingredients` (
+  `ingredient_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ingredients`
+--
+
+INSERT INTO `ingredients` (`ingredient_id`, `name`, `created_at`) VALUES
+(1, 'Salt', '2025-04-22 16:41:15'),
+(2, 'Pepper', '2025-04-22 16:41:15'),
+(3, 'Olive Oil', '2025-04-22 16:41:15'),
+(4, 'Garlic', '2025-04-22 16:41:15'),
+(5, 'Onion', '2025-04-22 16:41:15'),
+(6, 'Tomato', '2025-04-22 16:41:15'),
+(7, 'Chicken', '2025-04-22 16:41:15'),
+(8, 'Rice', '2025-04-22 16:41:15'),
+(9, 'Pasta', '2025-04-22 16:41:15'),
+(10, 'Flour', '2025-04-22 16:41:15'),
+(16, 'r', '2025-04-22 16:58:30'),
+(19, 'r (1 unit)', '2025-04-23 07:07:35'),
+(20, 'r (1 unit) (1 unit)', '2025-04-23 07:23:59'),
+(21, 'r (1 unit) (1 unit) (1 unit)', '2025-04-23 07:24:10'),
+(22, 'r (1 unit) (1 unit) (1 unit) (1 unit)', '2025-04-23 07:39:33'),
+(23, 'Chickpeas (3 cans)', '2025-04-23 08:00:58'),
+(24, 'Artichoke Hearts (2 cans)', '2025-04-23 08:00:58'),
+(25, 'Lemons (2 unit)', '2025-04-23 08:00:58'),
+(26, 'Chopped Shallot (1 unit)', '2025-04-23 08:00:58'),
+(27, 'Olive Oil (1 1/2 cups)', '2025-04-23 08:00:58'),
+(28, 'Feta Cheese (1 unit)', '2025-04-23 08:00:58'),
+(29, 'Parsley (1/4 cup)', '2025-04-23 08:00:58'),
+(30, 'Red Peppers (3 unit)', '2025-04-23 14:20:39'),
+(31, 'Aubergines (2 unit)', '2025-04-23 14:20:39'),
+(32, 'Olive Oil (8 tbsp)', '2025-04-23 14:20:39'),
+(33, 'Lasagne Sheets (4 unit)', '2025-04-23 14:20:40'),
+(34, 'Mozzarella (125 g)', '2025-04-23 14:20:40'),
+(35, 'Cherry Tomatoes (10 unit)', '2025-04-23 14:20:40'),
+(36, 'Aubergines (2 unit) (1 unit)', '2025-04-23 14:20:52'),
+(37, 'Cherry Tomatoes (10 unit) (1 unit)', '2025-04-23 14:20:52'),
+(38, 'Lasagne Sheets (4 unit) (1 unit)', '2025-04-23 14:20:52'),
+(39, 'Mozzarella (125 g) (1 unit)', '2025-04-23 14:20:52'),
+(40, 'Olive Oil (8 tbsp) (1 unit)', '2025-04-23 14:20:52'),
+(41, 'Red Peppers (3 unit) (1 unit)', '2025-04-23 14:20:52'),
+(42, 'Sunflower Oil (2 tbsp)', '2025-04-23 14:27:49'),
+(43, 'Onion (1 unit)', '2025-04-23 14:27:49'),
+(44, 'Garlic Cloves (2 unit)', '2025-04-23 14:27:49'),
+(45, 'Ginger (1 unit)', '2025-04-23 14:27:49'),
+(46, 'Medium Spice Taste (3 tbsp)', '2025-04-23 14:27:50'),
+(47, 'Chopped Tomatoes (400 g)', '2025-04-23 14:27:50'),
+(48, 'Chopped Tomatoes (400 g) (1 unit)', '2025-04-23 14:28:04'),
+(49, 'Garlic Cloves (2 unit) (1 unit)', '2025-04-23 14:28:04'),
+(50, 'Ginger (1 unit) (1 unit)', '2025-04-23 14:28:04'),
+(51, 'Medium Spice Taste (3 tbsp) (1 unit)', '2025-04-23 14:28:04'),
+(52, 'Onion (1 unit) (1 unit)', '2025-04-23 14:28:04'),
+(53, 'Sunflower Oil (2 tbsp) (1 unit)', '2025-04-23 14:28:04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recipes`
+--
+
+CREATE TABLE `recipes` (
+  `recipe_id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  `cooking_time` int(11) DEFAULT NULL,
+  `difficulty_level` varchar(50) DEFAULT 'Easy',
+  `cuisine_type` varchar(50) DEFAULT 'Italian',
+  `image_url` varchar(255) DEFAULT NULL,
+  `video_url` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `recipes`
+--
+
+INSERT INTO `recipes` (`recipe_id`, `title`, `description`, `cooking_time`, `difficulty_level`, `cuisine_type`, `image_url`, `video_url`, `created_at`, `updated_at`) VALUES
+(1, 'Roasted Chickpeas and Artichokes', 'Drain and rinse the chickpeas and artichoke hearts, and add them into a 9x13-inch baking dish. Zest one lemon and then juice it over the chickpeas. Thinly slice the other lemon (discarding as many seeds as possible) and add the slices, shallots, and olive oil to the dish. Season it with about 1/2 teaspoon salt and black pepper, and stir well. \n\nCover the dish tightly with foil and bake it in a 375°F oven for about 30 minutes. Uncover and add the feta and parsley, and bake it for an additional 15 minutes, until the feta has melted slightly and the liquid is bubbly.', 30, 'Easy', 'Mexican', '/data/user/0/com.example.recipe_finder/cache/5f72b406-26cc-491e-bf79-00917a7e3260/chickpeas.jpg', 'https://www.tiktok.com/@breadbakebeyond/video/7420591750097472811', '2025-04-22 16:41:15', '2025-04-23 08:00:58'),
+(4, 'Vegetarian lasagne', 'Step 1\nTo make the tomato sauce, heat the olive oil in a saucepan. Add the onions, garlic and carrot. Cook for 5-7 mins over a medium heat until softened. Turn up the heat a little and stir in the tomato purée. Cook for 1 min, pour in the white wine, then cook for 5 mins until this has reduced by two-thirds. Pour over the chopped tomatoes and add the basil leaves. Bring to the boil then simmer for 20 mins. Leave to cool then whizz in a food processor. Will keep, cooled, in the fridge for up to three days or frozen for three months.\n\nstep 2\nTo make the white sauce, melt the butter in a saucepan, stir in the plain flour, then cook for 2 mins. Slowly whisk in the milk, then bring to the boil, stirring. Turn down the heat, then cook until the sauce starts to thicken and coats the back of a wooden spoon. Will keep, cooled, in the fridge for up to three days or frozen for three months.\n\nstep 3\nHeat the oven to 200C/180C fan/gas 6. Lightly oil two large baking trays and add the peppers and aubergines. Toss with the olive oil, season well, then roast for 25 mins until lightly browned.\nstep 4\nReduce the oven to 180C/160C fan/gas 4. Lightly oil a 30 x 20cm ovenproof dish. Arrange a layer of the vegetables on the bottom, then pour over a third of the tomato sauce. Top with a layer of lasagne sheets, then drizzle over a quarter of the white sauce. Repeat until you have three layers of pasta.\n\nstep 5\nSpoon the remaining white sauce over the pasta, making sure the whole surface is covered, then scatter over the mozzarella and cherry tomatoes. Bake for 45 mins until bubbling and golden.', 25, 'Easy', 'Italian', '/data/user/0/com.example.recipe_finder/cache/scaled_lasagna.jpg', 'https://www.youtube.com/watch?v=nVY6Ze5VYsk&ab_channel=CookingwithCoit', '2025-04-23 14:20:39', '2025-04-23 14:20:52'),
+(5, 'Easy Chicken Curry', 'Step 1\nHeat the oil in a flameproof casserole dish or large frying pan over a medium heat. Add the onion and a generous pinch of salt and fry for 8-10 mins, or until the onion has turned golden brown and sticky. Add the garlic and ginger, cooking for a further minute.\n\nstep 2\nChop the chicken into chunky 3cm pieces, add to the pan and fry for 5 mins before stirring through the spice paste and tomatoes, along with 250ml water. Bring to the boil, lower to a simmer and cook on a gentle heat uncovered for 25-30 mins or until rich and slightly reduced. Stir though the yogurt, coriander and ground almonds, season and serve with warm naan or fluffy basmati rice.', 45, 'Medium', 'Indian', '/data/user/0/com.example.recipe_finder/cache/scaled_curry.jpg', 'https://www.youtube.com/watch?v=u_K8lrOOSX4&ab_channel=LatifsInspired', '2025-04-23 14:27:49', '2025-04-23 14:28:04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recipe_ingredients`
+--
+
+CREATE TABLE `recipe_ingredients` (
+  `recipe_id` int(11) NOT NULL,
+  `ingredient_id` int(11) NOT NULL,
+  `quantity` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `recipe_ingredients`
+--
+
+INSERT INTO `recipe_ingredients` (`recipe_id`, `ingredient_id`, `quantity`) VALUES
+(1, 23, '1 unit'),
+(1, 24, '1 unit'),
+(1, 25, '1 unit'),
+(1, 26, '1 unit'),
+(1, 27, '1 unit'),
+(1, 28, '1 unit'),
+(1, 29, '1 unit'),
+(4, 36, '1 unit'),
+(4, 37, '1 unit'),
+(4, 38, '1 unit'),
+(4, 39, '1 unit'),
+(4, 40, '1 unit'),
+(4, 41, '1 unit'),
+(5, 48, '1 unit'),
+(5, 49, '1 unit'),
+(5, 50, '1 unit'),
+(5, 51, '1 unit'),
+(5, 52, '1 unit'),
+(5, 53, '1 unit');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `role` varchar(10) DEFAULT 'user'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `created_at`, `role`) VALUES
+(1, 'abu', 'abu@email.com', 'abu123', '2025-04-22 14:51:30', 'user'),
+(2, 'admin', 'admin@gmail.com', 'admin123', '2025-04-22 14:55:16', 'admin'),
+(3, 'ali', 'ali@email.com', 'd5083e34522626dd10e151c78c1ba502a3d67427b752c3fd43bd3b944072d1e7', '2025-04-23 14:21:50', 'user');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `favorites`
+--
+ALTER TABLE `favorites`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_favorite` (`user_id`,`recipe_id`),
+  ADD KEY `fk_favorites_recipe` (`recipe_id`);
+
+--
+-- Indexes for table `ingredients`
+--
+ALTER TABLE `ingredients`
+  ADD PRIMARY KEY (`ingredient_id`),
+  ADD UNIQUE KEY `name` (`name`),
+  ADD UNIQUE KEY `name_2` (`name`),
+  ADD KEY `idx_name` (`name`);
+
+--
+-- Indexes for table `recipes`
+--
+ALTER TABLE `recipes`
+  ADD PRIMARY KEY (`recipe_id`),
+  ADD KEY `idx_cuisine` (`cuisine_type`),
+  ADD KEY `idx_difficulty` (`difficulty_level`);
+
+--
+-- Indexes for table `recipe_ingredients`
+--
+ALTER TABLE `recipe_ingredients`
+  ADD PRIMARY KEY (`recipe_id`,`ingredient_id`),
+  ADD KEY `ingredient_id` (`ingredient_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `favorites`
+--
+ALTER TABLE `favorites`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `ingredients`
+--
+ALTER TABLE `ingredients`
+  MODIFY `ingredient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+
+--
+-- AUTO_INCREMENT for table `recipes`
+--
+ALTER TABLE `recipes`
+  MODIFY `recipe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `favorites`
+--
+ALTER TABLE `favorites`
+  ADD CONSTRAINT `fk_favorites_recipe` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`recipe_id`),
+  ADD CONSTRAINT `fk_favorites_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+
+--
+-- Constraints for table `recipe_ingredients`
+--
+ALTER TABLE `recipe_ingredients`
+  ADD CONSTRAINT `recipe_ingredients_ibfk_1` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`recipe_id`),
+  ADD CONSTRAINT `recipe_ingredients_ibfk_2` FOREIGN KEY (`ingredient_id`) REFERENCES `ingredients` (`ingredient_id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
